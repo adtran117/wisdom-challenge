@@ -1,0 +1,149 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+  background-color: #439b6f;
+  color: white;
+  text-align: left;
+}
+
+.table th {
+  height: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table tr {
+  height: 42px;
+}
+
+.table thead {
+  width: 100px;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type {
+  border-bottom: 2px solid #439b6f;
+}
+
+.table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+
+/* Menu */
+.topbar {
+  width: 100%;
+  background-color: #f6f8f9;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  z-index: 1000;
+  min-width: 220px;
+  top: 100%;
+  right: 2em;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 12px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-menu ul li:hover {
+  background-color: #f5f5f5;
+}
+
+.toggle-status {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+svg.column {
+  padding-right: 1em;
+  padding-left: 0.5em;
+  cursor: pointer;
+}
+
+
+
+label.MuiFormControlLabel-root:hover {
+  background-color: #b1b1b152;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.dropdown-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.dropdown-actions span {
+  cursor: pointer;
+  color: #439b6f;
+  font-weight: bold;
+}
+
+.dropdown-actions span:hover {
+  text-decoration: underline;
+
+}
+
+.dropdown-actions span.disabled {
+  color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+.dropdown-actions span.disabled:hover {
+  text-decoration: none;
+}
+
+hr.MuiDivider-root {
+  padding-left: 0.4em;
+}
