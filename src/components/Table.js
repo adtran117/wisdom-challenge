@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, useEffect, useRef, forwardRef } from 'react';
 import _ from 'lodash';
 import './Table.css';
 
@@ -32,6 +32,22 @@ const Table = ({data=[]}) => {
   const [displayedRows, setDisplayedRows] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchError, setSearchError] = useState('');
+  const dropdownRef = useRef(null);
+  const colIconRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+        colIconRef.current && !colIconRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mouseup', handleClickOutside);
+    return () => {
+      document.removeEventListener('mouseup', handleClickOutside);
+    };
+  }, []);
 
   const handleToggleOption = (optionKey) => {
     setToggleOptions(prev => ({
@@ -104,12 +120,12 @@ const Table = ({data=[]}) => {
     }
   };
 
-  const
-    headerData = [],
-    toggleData = {}
-  ;
 
   useEffect(() => {
+    const
+      headerData = [],
+      toggleData = {}
+    ;
     _.each(data[0], (val, key) => {
       if (!key.includes(':@')) {
         headerData.push({
@@ -144,14 +160,16 @@ const Table = ({data=[]}) => {
           onChange={e => setSearchTerm(e.target.value)}
           onKeyDown={handleEnter}
         />
-        <IconButton onClick={() => handleSearch() } type="button" sx={{ p: '10px' }} aria-label="search">
+        <IconButton className="searchButton" onClick={() => handleSearch() } type="button" sx={{ p: '10px' }} aria-label="search">
           <SearchIcon className="search" />
         </IconButton>
         <Divider sx={{height: 28}} orientation="vertical" />
 
-        <ViewColumnIcon className="column" onClick={() => setDropdownOpen(!dropdownOpen)}/>
+        <IconButton className="colButton" type="button" sx={{ p: '10px' }}>
+          <ViewColumnIcon className="columnIcon" ref={colIconRef} onClick={() => setDropdownOpen(!dropdownOpen)}/>
+        </IconButton>
         {dropdownOpen && (
-          <div className="dropdown-menu">
+          <div className="dropdown-menu" ref={dropdownRef}>
             <div className="dropdown-actions">
             <span 
                 onClick={!allColumnsHidden ? hideAllColumns : undefined}
@@ -167,7 +185,7 @@ const Table = ({data=[]}) => {
             <FormGroup>
               {
                 _.map(toggleOptions, (val, key) => (
-                  <FormControlLabel control={<Switch color="success" checked={val.show} onClick={() => handleToggleOption(key)}/>} label={val.label} />
+                  <FormControlLabel key={key} control={<Switch color="success" checked={val.show} onClick={() => handleToggleOption(key)}/>} label={val.label} />
                 ))
               }
             </FormGroup>
@@ -194,7 +212,7 @@ const Table = ({data=[]}) => {
               {
                 displayedHeaders.map(val => (
                   toggleOptions[val.key].show ?
-                    <td>
+                    <td key={val.key}>
                       {item[val.key]}
                     </td>
                     :

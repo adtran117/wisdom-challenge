@@ -101,18 +101,20 @@
   font-weight: bold;
 }
 
-svg.column {
-  padding-right: 1em;
-  padding-left: 0.5em;
-  cursor: pointer;
+button.colButton {
+  margin-right: 1em;
+  margin-left: 0.5em;
+  cursor:pointer;
+}
+
+button.searchButton {
+  margin-right: 0.5em;
 }
 
 
 
 label.MuiFormControlLabel-root:hover {
   background-color: #b1b1b152;
-  margin-left: -10px;
-  margin-right: -10px;
 }
 
 .dropdown-actions {
@@ -145,5 +147,4 @@ label.MuiFormControlLabel-root:hover {
 }
 
 hr.MuiDivider-root {
-  padding-left: 0.4em;
 }
