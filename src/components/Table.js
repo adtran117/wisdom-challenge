@@ -165,8 +165,8 @@ const Table = ({data=[]}) => {
         </IconButton>
         <Divider sx={{height: 28}} orientation="vertical" />
 
-        <IconButton className="colButton" type="button" sx={{ p: '10px' }}>
-          <ViewColumnIcon className="columnIcon" ref={colIconRef} onClick={() => setDropdownOpen(!dropdownOpen)}/>
+        <IconButton className="colButton" type="button" sx={{ p: '10px' }} onClick={() => setDropdownOpen(!dropdownOpen)}>
+          <ViewColumnIcon className="columnIcon" ref={colIconRef}/>
         </IconButton>
         {dropdownOpen && (
           <div className="dropdown-menu" ref={dropdownRef}>
